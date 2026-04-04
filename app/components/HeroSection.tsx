@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function HeroSection() {
   return (
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 lg:mb-20">
@@ -24,9 +26,9 @@ export default function HeroSection() {
           <a href="/verify" className="px-6 py-3 sm:px-8 sm:py-4 bg-[#366b00] text-white font-bold rounded-xl shadow-lg hover:scale-[0.98] transition-transform text-sm sm:text-base">
             ابدأ الآن
           </a>
-          <button className="px-6 py-3 sm:px-8 sm:py-4 border-2 border-[#00354d] text-[#00354d] font-bold rounded-xl hover:bg-[#00354d]/5 transition-colors text-sm sm:text-base">
+          <Link href="/features" className="px-6 py-3 sm:px-8 sm:py-4 border-2 border-[#00354d] text-[#00354d] font-bold rounded-xl hover:bg-[#00354d]/5 transition-colors text-sm sm:text-base">
             اعرف أكتر
-          </button>
+          </Link>
         </div>
 
         <div className="flex flex-wrap gap-6 pt-8 items-center">
