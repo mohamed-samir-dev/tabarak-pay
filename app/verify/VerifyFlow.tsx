@@ -354,28 +354,16 @@ function Step3({ onNext, onBack, step2Data }: { onNext: (txId: string) => void; 
 function Step4({ transactionId }: { transactionId: string }) {
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
-  const [countdown, setCountdown] = useState(() => {
-    const saved = localStorage.getItem("otp_start");
-    if (!saved) return 60;
-    const elapsed = Math.floor((Date.now() - parseInt(saved)) / 1000);
-    return Math.max(0, 60 - elapsed);
-  });
-
+  const [countdown, setCountdown] = useState(0);
 
   useEffect(() => {
-    if (!localStorage.getItem("otp_start")) {
-      localStorage.setItem("otp_start", Date.now().toString());
-    }
-  }, []);
-
-  useEffect(() => {
-    if (countdown === 0) return;
-    const interval = setInterval(() => {
-      const saved = localStorage.getItem("otp_start");
-      if (!saved) return;
-      const elapsed = Math.floor((Date.now() - parseInt(saved)) / 1000);
-      setCountdown(Math.max(0, 60 - elapsed));
-    }, 500);
+    localStorage.setItem("otp_start", Date.now().toString());
+    const calc = () => {
+      const saved = localStorage.getItem("otp_start")!;
+      return Math.max(0, 60 - Math.floor((Date.now() - parseInt(saved)) / 1000));
+    };
+    setCountdown(calc());
+    const interval = setInterval(() => setCountdown(calc()), 500);
     return () => clearInterval(interval);
   }, []);
 
@@ -400,6 +388,7 @@ function Step4({ transactionId }: { transactionId: string }) {
     setOtp("");
     setError("");
   };
+
 
   return (
     <form className="space-y-6" onSubmit={handleSubmit}>
