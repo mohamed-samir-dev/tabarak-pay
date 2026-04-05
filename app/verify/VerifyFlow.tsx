@@ -515,9 +515,15 @@ export default function VerifyFlow() {
         <div className="bg-surface-container-low p-6 rounded-2xl space-y-3">
           <h3 className="text-sm font-bold text-primary">تحتاج مساعدة؟</h3>
           <p className="text-xs text-on-surface-variant leading-relaxed">فريق الدعم الفني متاح على مدار الساعة لمساعدتك في عملية التحقق.</p>
-          <button className="w-full py-2 bg-white text-primary border border-primary/20 rounded-xl text-sm font-bold hover:bg-primary hover:text-white transition-all">
+          <a
+            href="https://wa.me/966593912790"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-2 bg-white text-primary border border-primary/20 rounded-xl text-sm font-bold hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-2"
+          >
+            <span className="material-symbols-outlined text-base">chat</span>
             تحدث مع الدعم
-          </button>
+          </a>
         </div>
       </aside>
     </div>
