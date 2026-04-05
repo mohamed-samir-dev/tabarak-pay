@@ -401,10 +401,7 @@ function Step4({ transactionId }: { transactionId: string }) {
         <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
           سيتم إرسال رسالة نصية تحتوي على رمز تحقق على رقمك المسجل لدى البنك. أدخل الرمز لتأكيد العملية.
         </p>
-        <p className="text-xs text-red-500 font-bold flex items-center gap-1">
-          <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>warning</span>
-          لا تشارك هذا الرمز مع أي شخص.
-        </p>
+       
       </div>
 
       <div className="space-y-3">
