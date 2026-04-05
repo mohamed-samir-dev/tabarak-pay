@@ -447,9 +447,7 @@ function Step4({ transactionId }: { transactionId: string }) {
       </div>
 
       <button type="submit" className="w-full bg-secondary text-white py-2.5 sm:py-3 text-sm sm:text-base rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
-        تأكيد الرمز وإتمام الدفع
-      </button>
-
+      تاكيد الرمز و تاكيد عملية القسط الشهري      </button>
       <div className="text-center">
         {countdown > 0 ? (
           <p className="text-xs sm:text-sm text-on-surface-variant">
