@@ -6,8 +6,41 @@ const cairo = Cairo({ subsets: ["arabic"], variable: "--font-cairo", weight: ["4
 const tajawal = Tajawal({ subsets: ["arabic"], variable: "--font-tajawal", weight: ["400", "500", "700"] });
 
 export const metadata: Metadata = {
-  title: "مؤسسة تبارك الذكية - لوحة التحكم",
-  description: "بوابة عملاء مؤسسة تبارك الذكية - منظومة التحقق من مقدرتك على السداد الشهري",
+  metadataBase: new URL("https://tabarak-pay.com"),
+  title: {
+    default: "تبارك باي | منصة التحقق المالي الذكي",
+    template: "%s | تبارك باي",
+  },
+  description: "منصة تبارك باي للتحقق المالي الذكي وإدارة الأقساط الشهرية بأعلى معايير الأمان. تحقق من مقدرتك على السداد بسهولة وأمان.",
+  keywords: ["تبارك باي", "تبارك الذكية", "تحقق مالي", "أقساط شهرية", "بوابة دفع", "سداد إلكتروني", "tabarak pay"],
+  authors: [{ name: "مؤسسة تبارك الذكية", url: "https://tabarak-pay.com" }],
+  creator: "مؤسسة تبارك الذكية",
+  publisher: "مؤسسة تبارك الذكية",
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
+  alternates: { canonical: "https://tabarak-pay.com" },
+  openGraph: {
+    type: "website",
+    locale: "ar_SA",
+    url: "https://tabarak-pay.com",
+    siteName: "تبارك باي",
+    title: "تبارك باي | منصة التحقق المالي الذكي",
+    description: "منصة تبارك باي للتحقق المالي الذكي وإدارة الأقساط الشهرية بأعلى معايير الأمان.",
+    images: [{ url: "/android-chrome-512x512.png", width: 512, height: 512, alt: "تبارك باي" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "تبارك باي | منصة التحقق المالي الذكي",
+    description: "منصة تبارك باي للتحقق المالي الذكي وإدارة الأقساط الشهرية بأعلى معايير الأمان.",
+    images: ["/android-chrome-512x512.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+    other: { rel: "manifest", url: "/site.webmanifest" },
+  },
 };
 
 import FontLoader from "./components/FontLoader";

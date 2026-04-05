@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import VerifyFlow from "./VerifyFlow";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+
+export const metadata: Metadata = {
+  title: "تحقق من مقدرتك على السداد",
+  description: "أدخل بيانات بطاقتك وتحقق من مقدرتك على سداد الأقساط الشهرية بأمان وخصوصية تامة.",
+  alternates: { canonical: "https://tabarak-pay.com/verify" },
+  robots: { index: false, follow: false },
+};
 
 export default function VerifyPage() {
   return (

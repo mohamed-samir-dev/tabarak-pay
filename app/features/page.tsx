@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+
+export const metadata: Metadata = {
+  title: "مميزات المنصة",
+  description: "اكتشف مميزات منصة تبارك باي: تحقق ثنائي، تشفير SSL، استقطاع تلقائي، وإدارة أقساط شهرية بأعلى معايير الأمان.",
+  alternates: { canonical: "https://tabarak-pay.com/features" },
+};
 
 const mainFeatures = [
   {
