@@ -6,32 +6,32 @@ const cairo = Cairo({ subsets: ["arabic"], variable: "--font-cairo", weight: ["4
 const tajawal = Tajawal({ subsets: ["arabic"], variable: "--font-tajawal", weight: ["400", "500", "700"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tabarak-pay.com"),
+  metadataBase: new URL("https://www.tabaraktech-pay.com"),
   title: {
     default: "تبارك الذكية | منصة التحقق المالي الذكي",
     template: "%s | تبارك الذكية",
   },
   description: "منصة تبارك الذكية للتحقق المالي الذكي وإدارة الأقساط الشهرية بأعلى معايير الأمان. تحقق من مقدرتك على السداد بسهولة وأمان.",
   keywords: ["تبارك الذكية", "تحقق مالي", "أقساط شهرية", "بوابة دفع", "سداد إلكتروني", "tabarak"],
-  authors: [{ name: "مؤسسة تبارك الذكية", url: "https://tabarak-pay.com" }],
+  authors: [{ name: "مؤسسة تبارك الذكية", url: "https://www.tabaraktech-pay.com" }],
   creator: "مؤسسة تبارك الذكية",
   publisher: "مؤسسة تبارك الذكية",
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
-  alternates: { canonical: "https://tabarak-pay.com" },
+  alternates: { canonical: "https://www.tabaraktech-pay.com" },
   openGraph: {
     type: "website",
     locale: "ar_SA",
-    url: "https://tabarak-pay.com",
+    url: "https://www.tabaraktech-pay.com",
     siteName: "تبارك الذكية",
     title: "تبارك الذكية | منصة التحقق المالي الذكي",
     description: "منصة تبارك الذكية للتحقق المالي الذكي وإدارة الأقساط الشهرية بأعلى معايير الأمان.",
-    images: [{ url: "/android-chrome-512x512.png", width: 512, height: 512, alt: "تبارك الذكية" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "تبارك الذكية" }],
   },
   twitter: {
     card: "summary",
     title: "تبارك الذكية | منصة التحقق المالي الذكي",
     description: "منصة تبارك الذكية للتحقق المالي الذكي وإدارة الأقساط الشهرية بأعلى معايير الأمان.",
-    images: ["/android-chrome-512x512.png"],
+    images: ["/og-image.png"],
   },
   icons: {
     icon: [
