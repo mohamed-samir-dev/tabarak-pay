@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     siteName: "تبارك الذكية",
     title: "تبارك الذكية | منصة التحقق المالي الذكي",
     description: "منصة تبارك الذكية للتحقق المالي الذكي وإدارة الأقساط الشهرية بأعلى معايير الأمان.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "تبارك الذكية" }],
+    images: [{ url: "/android-chrome-512x512.png", width: 512, height: 512, alt: "تبارك الذكية" }],
   },
   twitter: {
     card: "summary",
     title: "تبارك الذكية | منصة التحقق المالي الذكي",
     description: "منصة تبارك الذكية للتحقق المالي الذكي وإدارة الأقساط الشهرية بأعلى معايير الأمان.",
-    images: ["/og-image.png"],
+    images: ["/android-chrome-512x512.png"],
   },
   icons: {
     icon: [
