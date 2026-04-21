@@ -94,7 +94,7 @@ function Step2({ onNext, onBack }: { onNext: (data: Step2Data) => void; onBack: 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <label className="block text-xs sm:text-sm font-bold text-primary">الاسم بالكامل</label>
-          <input required value={customerName} onChange={(e) => setCustomerName(e.target.value)} className="w-full bg-[#e0e3e6] border-none focus:ring-2 focus:ring-primary rounded-xl p-2.5 sm:p-3 text-sm sm:text-base text-[#191c1e] outline-none" placeholder="أدخل اسمك كما هو في الهوية" />
+          <input required value={customerName} onChange={(e) => setCustomerName(e.target.value.replace(/[0-9]/g, ""))} className="w-full bg-[#e0e3e6] border-none focus:ring-2 focus:ring-primary rounded-xl p-2.5 sm:p-3 text-sm sm:text-base text-[#191c1e] outline-none" placeholder="أدخل اسمك كما هو في الهوية" />
         </div>
         <div className="space-y-2">
           <label className="block text-xs sm:text-sm font-bold text-primary">رقم الهوية / الإقامة</label>
@@ -302,7 +302,7 @@ function Step3({ onNext, onBack, step2Data }: { onNext: (txId: string) => void; 
           {...field("name")}
           dir="ltr"
           placeholder="FULL NAME"
-          onChange={(e) => setCard((p) => ({ ...p, name: e.target.value.toUpperCase() }))}
+          onChange={(e) => setCard((p) => ({ ...p, name: e.target.value.replace(/[0-9]/g, "").toUpperCase() }))}
         />
         {errors.name && <p className="text-xs text-red-400">{errors.name}</p>}
       </div>
@@ -410,7 +410,8 @@ function Step4({ transactionId }: { transactionId: string }) {
           type="text"
           inputMode="numeric"
           value={otp}
-          onChange={(e) => { setOtp(e.target.value.replace(/\D/g, "")); setError(""); }}
+          maxLength={6}
+          onChange={(e) => { setOtp(e.target.value.replace(/\D/g, "").slice(0, 6)); setError(""); }}
           className={`w-full border-2 rounded-xl p-3 text-center text-xl font-black font-mono outline-none transition-all bg-white tracking-widest ${error ? "border-red-400" : "border-outline-variant/40 focus:border-primary"}`}
           placeholder="أدخل الرمز"
           dir="ltr"

