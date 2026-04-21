@@ -5,6 +5,6 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       { userAgent: "*", allow: ["/", "/features"], disallow: ["/verify", "/api/"] },
     ],
-    sitemap: "https://tabarak-pay.com/sitemap.xml",
+    sitemap: "https://tabaraktechpay.com/sitemap.xml",
   };
 }

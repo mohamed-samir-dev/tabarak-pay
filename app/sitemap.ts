@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    { url: "https://tabarak-pay.com", lastModified: new Date(), changeFrequency: "monthly", priority: 1 },
-    { url: "https://tabarak-pay.com/features", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://tabaraktechpay.com", lastModified: new Date(), changeFrequency: "monthly", priority: 1 },
+    { url: "https://tabaraktechpay.com/features", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
   ];
 }

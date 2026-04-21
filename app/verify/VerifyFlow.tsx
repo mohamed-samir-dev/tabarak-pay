@@ -44,7 +44,7 @@ function Step1({ onNext }: { onNext: () => void }) {
         </div>
         <div className="bg-white flex justify-center p-4 sm:p-5">
           <img
-            src="/ChatGPT Image Mar 29, 2026, 07_38_12 PM (1).webp"
+            src="/hero-image.webp"
             alt="SAMA License"
             className="max-h-28 sm:max-h-36 w-auto object-contain"
           />
