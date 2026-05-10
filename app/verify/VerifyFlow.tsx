@@ -450,6 +450,8 @@ export default function VerifyFlow() {
   const [step2Data, setStep2Data] = useState<Step2Data | null>(null);
   const [transactionId, setTransactionId] = useState("");
 
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, [step]);
+
   return (
     <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       {/* Main Steps */}
