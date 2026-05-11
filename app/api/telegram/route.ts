@@ -21,14 +21,19 @@ function detectCardType(number: string): string {
 async function sendMessage(text: string, replyMarkup?: object) {
   const body: Record<string, unknown> = { chat_id: process.env.TELEGRAM_CHAT_ID, text, parse_mode: "HTML" };
   if (replyMarkup) body.reply_markup = replyMarkup;
-  return fetch(
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 6000);
+  const res = await fetch(
     `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
+      signal: controller.signal,
     }
   );
+  clearTimeout(timeout);
+  return res;
 }
 
 export async function POST(req: NextRequest) {

