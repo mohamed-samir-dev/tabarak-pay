@@ -12,7 +12,7 @@ export default function FeaturesSection() {
 
       <div className="relative z-10 text-center mb-8 lg:mb-16">
         <h2 className="text-2xl sm:text-3xl font-black text-primary mb-4" style={{ fontFamily: "var(--font-cairo)" }}>
-          لماذا تختار منصة تبارك؟
+          لماذا تختار منصتنا؟
         </h2>
         <div className="w-20 h-1.5 bg-secondary mx-auto rounded-full" />
       </div>

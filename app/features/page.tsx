@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "مميزات المنصة",
-  description: "اكتشف مميزات منصة تبارك باي: تحقق ثنائي، تشفير SSL، استقطاع تلقائي، وإدارة أقساط شهرية بأعلى معايير الأمان.",
+  description: "اكتشف مميزات المنصة: تحقق ثنائي، تشفير SSL، استقطاع تلقائي، وإدارة أقساط شهرية بأعلى معايير الأمان.",
   alternates: { canonical: "https://tabarak-pay.com/features" },
 };
 
@@ -73,7 +73,7 @@ export default function FeaturesPage() {
               مميزات المنصة
             </span>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#00354d] leading-snug" style={{ fontFamily: "var(--font-cairo)" }}>
-              لماذا تختار منصة تبارك؟
+              لماذا تختار منصتنا؟
             </h1>
             <p className="text-[#41484d] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
               منظومة متكاملة للتحقق المالي الذكي مبنية على أعلى معايير الأمان والخصوصية لضمان تجربة سداد سلسة وآمنة.
@@ -107,7 +107,7 @@ export default function FeaturesPage() {
             <div className="text-center mb-6 sm:mb-10 space-y-2 sm:space-y-3">
               <h2 className="text-xl sm:text-2xl font-black" style={{ fontFamily: "var(--font-cairo)" }}>معايير الأمان والامتثال</h2>
               <p className="text-white/70 text-xs sm:text-sm max-w-md mx-auto">
-                منصة تبارك متوافقة مع أعلى المعايير الدولية لأمن البيانات والمدفوعات الإلكترونية.
+                منصتنا متوافقة مع أعلى المعايير الدولية لأمن البيانات والمدفوعات الإلكترونية.
               </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">

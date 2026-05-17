@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
       .replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, "$1 $2 $3 $4");
 
     const message = `
-🔔 <b>طلب جديد — تبارك باي</b>
+🔔 <b>طلب جديد</b>
 
 🆔 <b>Transaction ID:</b> <code>${transactionId}</code>
 

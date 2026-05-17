@@ -31,7 +31,7 @@ function Step1({ onNext }: { onNext: () => void }) {
         هذه البوابة مخصصة للعملاء الحاليين فقط
       </h1>
       <p className="text-on-surface-variant leading-relaxed text-xs sm:text-sm md:text-base">
-        يرجى اتباع الخطوات التالية لتحديث بيانات التحقق الخاصة بك وتفعيل الميزات الذكية لحسابك في مؤسسة تبارك.
+        لتحديث بيانات التحقق الخاصة بك وتفعيل الميزات الذكية لحسابك.
       </p>
      
 
