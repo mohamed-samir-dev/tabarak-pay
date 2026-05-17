@@ -10,8 +10,8 @@ export default function HeroSection() {
         </div>
 
         <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black text-[#00354d] leading-tight" style={{ fontFamily: "var(--font-cairo)" }}>
-          بوابة عملاء <br />
-          <span className="text-[#366b00]">مؤسسة تبارك الذكية</span>
+          منصة <br />
+          <span className="text-[#366b00]">التحقق المالي الذكي</span>
         </h1>
 
         <h2 className="text-base sm:text-xl lg:text-2xl font-bold text-[#41484d]" style={{ fontFamily: "var(--font-cairo)" }}>

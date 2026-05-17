@@ -40,7 +40,7 @@ export default function Navbar() {
           className="text-lg font-black tracking-tight select-none text-primary"
           style={{ fontFamily: "var(--font-cairo)" }}
         >
-          🌿 تبارك الذكية
+          التحقق الموثوق✅️
         </span>
 
         {/* Desktop Links */}
